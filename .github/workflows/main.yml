@@ -8,4 +8,4 @@ jobs:
     steps:
       - uses: actions/github-script@v3
         with:
-          script: console.log(context)
+          script: console.log(context.payload.repository.owner)
