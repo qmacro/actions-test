@@ -1,5 +1,5 @@
 name: GitHub Script Test
-on: workflow_dispatch
+on: [push, workflow_dispatch]
 jobs:
   job1:
     runs-on: ubuntu-latest
