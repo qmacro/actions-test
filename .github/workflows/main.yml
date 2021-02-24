@@ -10,23 +10,26 @@ jobs:
         id: getcomment
         with:
           script: |
-            console.log(context)
             const res = await github.issues.listComments({
               owner: context.payload.repository.owner.login,
               repo: context.payload.repository.name,
               issue_number: context.payload.issue.number
             })
-            if (res.data && res.data.length > 0) {
-              return [
-                "URL Notes",
-                "",
-                context.payload.issue.title,
-                context.payload.issue.body,
-                "",
-                res.data[res.data.length - 1].body
-              ].join("\n")
-            }
+            return (res.data && res.data.length <= 0)
+              ? ""
+              : [
+                  "URL Notes",
+                  "",
+                  context.payload.issue.title,
+                  context.payload.issue.body,
+                  "",
+                  res.data[res.data.length - 1].body
+                ].join("\n")
           result-encoding: string
       - run: |
           echo RESULT IS "${{steps.getcomment.outputs.result}}" XYZ
+      - run: echo "NOTHING"
+        if: steps.getcomment.outputs.result == ''
+      - run: echo "SOMETHING"
+        if: steps.getcomment.outputs.result != ''
 
