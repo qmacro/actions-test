@@ -7,6 +7,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/github-script@v3
+        id: getcomment
         with:
           script: |
             const res = await github.issues.listComments({
@@ -15,3 +16,7 @@ jobs:
               issue_number: context.payload.issue.number
             })
             if (res.data && res.data.length > 0) console.log(res.data[res.data.length - 1].body)
+          result-encoding: string
+      - run: |
+          echo RESULT IS "${{steps.getcomment.outputs.result}}" XYZ
+
