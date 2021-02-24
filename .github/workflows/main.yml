@@ -17,14 +17,14 @@ jobs:
               issue_number: context.payload.issue.number
             })
             if (res.data && res.data.length > 0) {
-              return `
-                Reading list notes
-
-                ${context.payload.issue.title}
-                ${context.payload.issue.body}
-
-                ${res.data[res.data.length - 1].body}
-              `
+              return [
+                "Reading list notes",
+                "",
+                context.payload.issue.title,
+                context.payload.issue.body,
+                "",
+                res.data[res.data.length - 1].body
+              ].join("\n")
             }
           result-encoding: string
       - run: |
