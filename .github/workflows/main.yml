@@ -18,7 +18,7 @@ jobs:
             })
             if (res.data && res.data.length > 0) {
               return [
-                "Reading list notes",
+                "URL Notes",
                 "",
                 context.payload.issue.title,
                 context.payload.issue.body,
