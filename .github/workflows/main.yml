@@ -2,16 +2,8 @@ name: GitHub Script Test
 on: workflow_dispatch
 jobs:
   job1:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
-      - name: STEP1
-        run: echo Hello, world!
-      - name: STEP2
-        uses: actions/github-script@v3
-        id: STEP2
+      - uses: actions/github-script@v3
         with:
-          script: return "this is from github-script!"
-          result-encoding: string
-      - name: Get result
-        run: echo "${{steps.STEP2.outputs.result}}"
+          script: console.log(context)
