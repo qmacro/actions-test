@@ -12,5 +12,5 @@ jobs:
             github.issues.listComments({
               owner: context.payload.repository.owner.login,
               repo: context.payload.repository.name,
-              issue_number: context.payload.issue.id
+              issue_number: context.payload.issue.number
             })
