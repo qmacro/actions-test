@@ -8,4 +8,9 @@ jobs:
     steps:
       - uses: actions/github-script@v3
         with:
-          script: console.log(context.payload.repository.owner)
+          script: |
+            github.issues.listComments({
+              owner: context.payload.repository.owner.login,
+              repo: context.payload.repository.name,
+              issue_number: context.payload.issue.id
+            })
