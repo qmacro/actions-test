@@ -23,8 +23,9 @@ jobs:
                 ${context.payload.issue.title}
                 ${context.payload.issue.body}
 
-                res.data[res.data.length - 1].body
+                ${res.data[res.data.length - 1].body}
               `
+            }
           result-encoding: string
       - run: |
           echo RESULT IS "${{steps.getcomment.outputs.result}}" XYZ
