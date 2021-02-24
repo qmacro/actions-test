@@ -9,9 +9,9 @@ jobs:
       - uses: actions/github-script@v3
         with:
           script: |
-            const comments = await github.issues.listComments({
+            const res = await github.issues.listComments({
               owner: 'qmacro',
               repo: 'actions-test',
               issue_number: 1
             })
-            if (comments.length > 0) console.log(comments[comments.length - 1].body)
+            if (res.data && res.data.length > 0) console.log(res.data[res.data.length - 1].body)
