@@ -9,7 +9,7 @@ jobs:
       - uses: actions/github-script@v3
         with:
           script: |
-            console.log(github.issues.listComments({
+            console.log(await github.issues.listComments({
               owner: 'qmacro',
               repo: 'actions-test',
               issue_number: 1
