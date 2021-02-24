@@ -1,8 +1,10 @@
 name: GitHub Script Test
-on: [push, workflow_dispatch]
+on:
+  issues:
+    types: closed
 jobs:
   job1:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/github-script@v3
         with:
